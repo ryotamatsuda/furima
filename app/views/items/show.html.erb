@@ -1,0 +1,41 @@
+<% if @item.buyer_id %>
+  <p>この商品はすでに購入されています</p>
+<% end %>
+<h1>商品詳細</h1>
+<div class="item-show">
+  <% if @item.image_name %>
+    <img src="<%="/item_images/#{@item.image_name}"%>">
+  <% else %>
+    <p class="no-image">画像はありません</p>
+  <% end %>
+
+  <li>商品名　　<%= @item.name %></li>
+
+  <li>価格　　<%= @item.price %>円</li>
+
+  <li>状態　　<%= @item.condition %></li>
+
+  <li>出品者ID　<%= @item.seller_id %></li>
+
+  <li>
+    <% if @current_user && @item.buyer_id==nil && @item.seller_id==@current_user.id %>
+      <%= link_to("編集", "/items/#{@item.id}/edit") %>
+      <%= link_to("この商品を削除", "/items/#{@item.id}/destroy",{method: "post"}) %>
+    <% end %>
+  </li>
+
+  <li>
+    <% if @item.buyer_id.nil? %>
+      <% if @current_user %>
+        <% unless @item.seller_id == @current_user.id %>
+          <%= link_to("購入画面へ", "/items/#{@item.id}/buy_form") %>
+        <% end %>
+      <% else %>
+        <p>購入するにはログイン、または新規登録が必要です</p>
+        <%= link_to("ホームへ", "/") %>
+      <% end %>
+    <% end %>
+  </li>
+</div>
+
+<!-- <%= link_to("購入する","/items/#{@item.id}/buy",{method: "post"}) %> -->

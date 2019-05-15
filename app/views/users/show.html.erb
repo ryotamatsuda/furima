@@ -1,0 +1,44 @@
+<h1>ユーザー詳細</h1>
+<div>
+  <li>
+    ユーザー名　　<%= @user.name %>
+  </li>
+  <li>
+    メールアドレス　　<%= @user.email %>
+  </li>
+  <% if @current_user.id == params[:id].to_i %>
+    <li>
+      住所　　<%= @user.address %>
+    </li>
+    <li>
+      パスワード　<%= @user.password %>
+    </li>
+  <% end %>
+
+  <h2>出品中の商品</h2>
+  <% @items.each do |item| %>
+    <a href="<%="/items/#{item.id}"%>">
+    <ul class="one-of-item">
+      <% if item.image_name %>
+        <img src="<%="/item_images/#{item.image_name}"%>">
+      <% else %>
+        <p class="no-image">画像はありません</p>
+      <% end %>
+
+      <li class="item-info">商品名　　<%= item.name %></li>
+
+      <li class="item-info">価格　　<%= item.price %>円</li>
+
+      <li class="item-info">状態　　<%= item.condition %></li>
+
+      <li class="item-info">出品者ID　<%= item.seller_id %></li>
+    </ul>
+    </a>
+  <% end %>
+
+
+  <li>
+    <%= link_to("編集", "/users/#{@user.id}/edit") %>
+    <%= link_to("アカウント削除", "/users/#{@user.id}/destroy") %>
+  </li>
+</div>

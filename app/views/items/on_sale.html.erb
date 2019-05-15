@@ -1,0 +1,21 @@
+<h1>販売中の商品</h1>
+<%= link_to("すべての商品一覧","/items/index") %>
+<% @items.each do |item| %>
+  <a href="<%="/items/#{item.id}"%>">
+  <ul class="one-of-item">
+    <% if item.image_name %>
+      <img src="<%="/item_images/#{item.image_name}"%>">
+    <% else %>
+      <p class="no-image">画像はありません</p>
+    <% end %>
+
+    <li class="item-info">商品名　　<%= item.name %></li>
+
+    <li class="item-info">価格　　<%= item.price %>円</li>
+
+    <li class="item-info">状態　　<%= item.condition %></li>
+
+    <li class="item-info">出品者ID　<%= item.seller_id %></li>
+  </ul>
+  </a>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>購入手続き</h1>
+
+<h2>商品情報</h2>
+<div class="item-show">
+  <% if @item.image_name %>
+    <img src="<%="/item_images/#{@item.image_name}"%>">
+  <% else %>
+    <p class="no-image">画像はありません</p>
+  <% end %>
+
+  <li>商品名　　<%= @item.name %></li>
+
+  <li>価格　　<%= @item.price %>円</li>
+
+  <li>状態　　<%= @item.condition %></li>
+
+  <li>出品者ID　<%= @item.seller_id %></li>
+</div>
+
+<h3>支払い方法選択</h3>
+
+<div class="buy">
+  <%= link_to("購入する","/items/#{@item.id}/buy",{method: "post"}) %>
+</div>

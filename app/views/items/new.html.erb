@@ -1,0 +1,26 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">出品する</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% @item.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+
+        <%= form_tag("/items/create",{multipart: true}) do %>
+          <p>商品の名前</p>
+          <input name="name" value="<%= @item.name %>">
+          <p>商品の価格</p>
+          <input name="price" type="number" value="<%= @item.price %>">
+          <p>商品の状態</p>
+          <input name="condition" value="<%= @item.condition %>">
+          <p>商品の画像</p>
+          <input name="image" type="file" value="<%= @image %>">
+          <input type="submit" value="出品する">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

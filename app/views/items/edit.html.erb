@@ -1,0 +1,23 @@
+<h1>商品編集</h1>
+<div class="form-body">
+  <% @item.errors.full_messages.each do |message| %>
+    <div class="form-error">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <%= form_tag("/items/#{@item.id}/update",{multipart: true}) do %>
+    <p>商品の名前</p>
+    <input name="name" value="<%= @item.name %>">
+    <p>商品の価格</p>
+    <input name="price" type="number" value="<%= @item.price %>">
+    <p>商品の状態</p>
+    <input name="condition" value="<%= @item.condition %>">
+    <p>商品の画像</p>
+    <input name="image" type="file" value="<%= @image %>">
+    <input type="submit" value="編集">
+    <li>
+    <%= link_to("この商品を削除", "/items/#{@item.id}/destroy",{method: "post"}) %>
+    </li>
+  <% end %>
+</div>

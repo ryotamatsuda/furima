@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Furima</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <ul class="header-menus">
+        <% if @current_user %>
+
+          <li>
+            <%= link_to("ホーム","/") %>
+          </li>
+
+          <li>
+            <%= link_to("商品一覧","/items/index") %>
+          </li>
+
+          <li>
+            <%= link_to("#{@current_user.name}","/users/#{@current_user.id}") %>
+          </li>
+
+          <li>
+            <%= link_to("現在出品中の商品","/items/am_selling") %>
+          </li>
+
+          <li>
+            <%= link_to("売却済みの商品","/items/sold") %>
+          </li>
+
+          <li>
+            <%= link_to("購入履歴","/items/bought") %>
+          </li>
+
+          <li>
+            <%= link_to("出品する","/items/new") %>
+          </li>
+
+          <li>
+            <%= link_to("ログアウト","/logout",{method:"post"}) %>
+          </li>
+
+        <% else %>
+
+          <li>
+            <%= link_to("ホーム","/") %>
+          </li>
+
+          <li>
+            <%= link_to("ログイン","/login") %>
+          </li>
+
+          <li>
+            <%= link_to("新規登録","/signup") %>
+          </li>
+
+        <% end %>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

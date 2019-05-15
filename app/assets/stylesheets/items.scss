@@ -1,0 +1,31 @@
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,a:visited {
+  color: #000000;
+}
+
+.one-of-item {
+  background-color: #C0C0C0;
+  width: 140px;
+}
+
+.one-of-item img {
+  height: 100px;
+  width: 100px;
+}
+
+.no-image {
+  height: 100px;
+  width: 100px;
+}
+
+.item-show img{
+  height: 300px;
+  width: 300px;
+}
